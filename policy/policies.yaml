@@ -1,0 +1,129 @@
+# DLP Gateway — Department & Role Policy Rules
+# Detected category keys must match lowercase underscore form of DLPFinding.category
+
+finance:
+  block:
+    - payment_card_number
+    - iban
+    - bank_account_number
+    - swift/bic_code
+    - uk_sort_code
+    - aba_routing_number
+    - ifsc_code
+    - cvv/cvc_code
+    - pin_number
+    - transaction_data
+    - high-entropy_secret
+    - private_key
+    - aws_access_key
+    - aws_secret_key
+    - hardcoded_password
+    - base64-encoded_sensitive_data
+  warn:
+    - email_address
+    - uk_phone_number
+    - salary_figure
+    - financial_results
+    - revenue_forecast
+    - budget_data
+
+hr:
+  block:
+    - salary_figure
+    - employee_data
+    - hr_records
+    - performance_review
+    - payroll_data
+    - hr_decision_data
+    - aadhaar_number
+    - pan_number
+    - uk_ni_number
+    - us_ssn
+    - date_of_birth
+    - private_key
+    - hardcoded_password
+  warn:
+    - email_address
+    - uk_phone_number
+    - person_name
+    - internal_communication
+
+engineering:
+  block:
+    - aws_access_key
+    - aws_secret_key
+    - aws_session_key
+    - openai_api_key
+    - anthropic_key
+    - huggingface_token
+    - github_pat
+    - github_oauth_token
+    - gitlab_token
+    - google_api_key
+    - stripe_secret_key
+    - stripe_restricted_key
+    - jwt_token
+    - private_key
+    - hardcoded_password
+    - high-entropy_secret
+    - twilio_sid
+    - sendgrid_key
+    - slack_bot_token
+    - base64-encoded_sensitive_data
+  warn:
+    - internal_communication
+    - product_roadmap
+    - competitive_intelligence
+
+strategy:
+  block:
+    - investment_strategy
+    - board_decision
+    - strategic_plan
+    - product_roadmap
+    - competitive_intelligence
+    - revenue_forecast
+    - budget_data
+    - m&a_sensitive_info
+    - financial_results
+    - barclays_confidential
+    - proprietary_information
+    - legal_privilege
+    - private_key
+    - hardcoded_password
+  warn:
+    - email_address
+    - internal_url
+
+legal:
+  block:
+    - legal_privilege
+    - barclays_confidential
+    - confidential_document
+    - restricted_distribution
+    - proprietary_information
+    - m&a_sensitive_info
+    - private_key
+    - hardcoded_password
+  warn:
+    - email_address
+    - uk_phone_number
+
+default:
+  block:
+    - payment_card_number
+    - private_key
+    - aws_access_key
+    - aws_secret_key
+    - hardcoded_password
+    - aadhaar_number
+    - pan_number
+    - uk_ni_number
+    - us_ssn
+    - barclays_confidential
+    - base64-encoded_sensitive_data
+    - high-entropy_secret
+  warn:
+    - email_address
+    - internal_url
+    - salary_figure

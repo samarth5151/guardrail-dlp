@@ -1,0 +1,63 @@
+# version: "3.9" (obsolete)
+
+
+services:
+
+  # ── PostgreSQL — Audit log database ────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER:     dlp
+      POSTGRES_PASSWORD: dlp
+      POSTGRES_DB:       dlp
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dlp"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Redis — Safe-prompt cache ───────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── FastAPI DLP Gateway ─────────────────────────────────────────────────────
+  gateway:
+    build: .
+    ports:
+      - "8001:8001"
+    environment:
+      POSTGRES_URL: postgresql+asyncpg://dlp:dlp@postgres:5432/dlp
+      REDIS_URL:    redis://redis:6379
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Admin Dashboard (Nginx static file server) ──────────────────────────────
+  dashboard:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./ui:/usr/share/nginx/html:ro
+    depends_on:
+      - gateway
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

@@ -1,0 +1,304 @@
+/* ── Barclays DLP Guardian — Overlay v3 ── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Backdrop ── */
+#dlp-guardian-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+  background: rgba(5, 8, 18, 0.80) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  animation: dlp-bg-in 0.18s ease !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+@keyframes dlp-bg-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal shell ── */
+.dlp-modal {
+  background: #0D1526 !important;
+  border-radius: 20px !important;
+  width: 480px !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.25),
+    0 32px 80px rgba(0, 0, 0, 0.9),
+    0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  animation: dlp-modal-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+}
+
+.dlp-modal-warn {
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, 0.25),
+    0 32px 80px rgba(0, 0, 0, 0.9),
+    0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+@keyframes dlp-modal-in {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* ── Top colour stripe ── */
+.dlp-stripe {
+  height: 4px !important;
+  background: linear-gradient(90deg, #EF4444, #DC2626) !important;
+  width: 100% !important;
+}
+.dlp-stripe-warn {
+  background: linear-gradient(90deg, #F59E0B, #D97706) !important;
+}
+
+/* ── Header ── */
+.dlp-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 18px 20px 14px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.dlp-header-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.dlp-shield {
+  font-size: 26px !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 0 8px rgba(239,68,68,0.5)) !important;
+}
+
+.dlp-modal-warn .dlp-shield {
+  filter: drop-shadow(0 0 8px rgba(245,158,11,0.5)) !important;
+}
+
+.dlp-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #F1F5F9 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.2 !important;
+}
+
+.dlp-subtitle {
+  font-size: 11px !important;
+  color: #475569 !important;
+  margin-top: 2px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ── Close button ── */
+.dlp-x {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: rgba(255,255,255,0.06) !important;
+  color: #64748B !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  display: grid !important;
+  place-items: center !important;
+  transition: background 0.15s, color 0.15s !important;
+  flex-shrink: 0 !important;
+  font-family: inherit !important;
+}
+.dlp-x:hover {
+  background: rgba(239,68,68,0.15) !important;
+  color: #EF4444 !important;
+}
+
+/* ── Body ── */
+.dlp-body {
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+/* ── Hero banner ── */
+.dlp-hero {
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+.dlp-hero-warn {
+  background: rgba(245, 158, 11, 0.08) !important;
+  border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.dlp-hero-icon {
+  font-size: 18px !important;
+  flex-shrink: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.dlp-hero-text {
+  font-size: 13.5px !important;
+  color: #CBD5E1 !important;
+  line-height: 1.55 !important;
+}
+.dlp-hero-text strong { color: #F1F5F9 !important; }
+
+/* ── Reason box ── */
+.dlp-reason-box {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+}
+
+.dlp-reason-label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  margin-bottom: 6px !important;
+}
+
+.dlp-reason-text {
+  font-size: 13px !important;
+  color: #94A3B8 !important;
+  line-height: 1.6 !important;
+}
+
+/* ── Stats pills ── */
+.dlp-stats {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.dlp-stat-pill {
+  border-radius: 8px !important;
+  padding: 5px 12px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+}
+
+.dlp-pill-block {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #EF4444 !important;
+  border: 1px solid rgba(239,68,68,0.25) !important;
+}
+.dlp-pill-warn {
+  background: rgba(245, 158, 11, 0.12) !important;
+  color: #F59E0B !important;
+  border: 1px solid rgba(245,158,11,0.25) !important;
+}
+.dlp-pill-score {
+  background: rgba(255,255,255,0.05) !important;
+  color: #94A3B8 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+}
+.dlp-pill-score b { color: #E2E8F0 !important; }
+.dlp-pill-tier {
+  background: rgba(124, 58, 237, 0.1) !important;
+  color: #A78BFA !important;
+  border: 1px solid rgba(124,58,237,0.2) !important;
+}
+
+/* ── Detected types ── */
+.dlp-types {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.dlp-types-label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+}
+
+.dlp-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.dlp-tag {
+  background: rgba(0, 174, 239, 0.1) !important;
+  color: #67E8F9 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 4px 11px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(0,174,239,0.2) !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* ── Warn action buttons ── */
+.dlp-actions {
+  display: flex !important;
+  gap: 10px !important;
+  justify-content: flex-end !important;
+}
+
+.dlp-btn-cancel {
+  padding: 9px 18px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  transition: all 0.15s !important;
+  background: rgba(239,68,68,0.1) !important;
+  border: 1px solid rgba(239,68,68,0.35) !important;
+  color: #FCA5A5 !important;
+}
+.dlp-btn-cancel:hover {
+  background: rgba(239,68,68,0.2) !important;
+  border-color: #EF4444 !important;
+}
+
+.dlp-btn-proceed {
+  padding: 9px 18px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  transition: all 0.15s !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: #64748B !important;
+}
+.dlp-btn-proceed:hover {
+  background: rgba(255,255,255,0.1) !important;
+  color: #94A3B8 !important;
+}
+
+/* ── Footer note ── */
+.dlp-footer {
+  font-size: 11px !important;
+  color: #334155 !important;
+  line-height: 1.6 !important;
+  border-top: 1px solid rgba(255,255,255,0.05) !important;
+  padding-top: 12px !important;
+}
+.dlp-footer strong { color: #475569 !important; }
